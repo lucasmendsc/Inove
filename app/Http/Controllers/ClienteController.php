@@ -14,7 +14,6 @@ class ClienteController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -54,7 +53,7 @@ class ClienteController extends Controller
     public function show()
     {
         $cliente = Cliente::where('nome', "nome")
-        ->first();
+            ->first();
 
         return $cliente;
     }
@@ -77,9 +76,18 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $cliente = Cliente::where('id', $request->id)
+            ->first();
+
+        $cliente->nome = $request->nome;;
+        $cliente->cpf = $request->cpf;
+        $cliente->senha = $request->senha;
+        $cliente->email = $request->email;
+        $cliente->saldo = $request->saldo;
+
+        $cliente->update();
     }
 
     /**
@@ -88,8 +96,11 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
-        //
+        $cliente = Cliente::where('id', $request->id)
+        ->first();
+
+        $cliente->delete();
     }
 }

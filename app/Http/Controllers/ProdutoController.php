@@ -14,7 +14,6 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -54,7 +53,7 @@ class ProdutoController extends Controller
     public function show()
     {
         $produto = Produto::where('nome', "nome")
-        ->first();
+            ->first();
 
         return $produto;
     }
@@ -65,9 +64,18 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $produto = Produto::where('id', $request->id)
+            ->first();
+
+        $produto->id_empresa = $request->id_empresa;;
+        $produto->descricao = $request->descricao;
+        $produto->foto = $request->foto;
+        $produto->nome = $request->nome;
+        $produto->quantidade = $request->quantidade;
+
+        $produto->update();
     }
 
     /**
@@ -88,8 +96,11 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
-        //
+        $produto = Produto::where('id', $request->id)
+        ->first();
+
+        $produto->delete();
     }
 }

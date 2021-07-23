@@ -14,7 +14,6 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -63,7 +62,7 @@ class EmpresaController extends Controller
     public function show()
     {
         $empresa = Empresa::where('nome', "nome")
-        ->first();
+            ->first();
 
         return $empresa;
     }
@@ -88,7 +87,24 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $empresa = empresa::where('id', $request->id)
+            ->first();
+
+        $empresa->nome = $request->nome;
+        $empresa->razao = $request->razao;
+        $empresa->cnpj = $request->cnpj;
+        $empresa->email = $request->email;
+        $empresa->rua = $request->rua;
+        $empresa->bairro = $request->bairro;
+        $empresa->complemento = $request->complemento;
+        $empresa->cidade = $request->cidade;
+        $empresa->estado = $request->estado;
+        $empresa->cep = $request->cep;
+        $empresa->telefone = $request->telefone;
+        $empresa->numero = $request->numero;
+        $empresa->ativo = $request->ativo;
+
+        $empresa->update();
     }
 
     /**
@@ -97,8 +113,11 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
-        //
+        $empresa = empresa::where('id', $request->id)
+        ->first();
+
+        $empresa->delete();
     }
 }

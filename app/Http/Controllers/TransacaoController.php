@@ -14,7 +14,6 @@ class TransacaoController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -52,7 +51,7 @@ class TransacaoController extends Controller
     public function show()
     {
         $transacao = Transacao::where('id', 2)
-        ->first();
+            ->first();
 
         return $transacao;
     }
@@ -75,9 +74,20 @@ class TransacaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $transacao = Transacao::where('id', $request->id)
+            ->first();
+
+        $transacao->id_cliente = 1;
+        $transacao->id_produto = 1;
+        $transacao->valor = 1.23;
+
+        $transacao->id_cliente = $request->id_cliente;;
+        $transacao->id_produto = $request->id_produto;
+        $transacao->valor = $request->valor;
+
+        $transacao->update();
     }
 
     /**
@@ -86,8 +96,11 @@ class TransacaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
-        //
+        $transacao = Transacao::where('id', $request->id)
+        ->first();
+
+        $transacao->delete();
     }
 }
