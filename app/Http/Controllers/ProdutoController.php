@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Empresa;
+use App\Models\Produto;
 
-class EmpresaController extends Controller
+class ProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,23 +24,14 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        $empresa = new Empresa();
+        $produto = new Produto();
 
-        $empresa->nome = "nome";
-        $empresa->razao = "razao";
-        $empresa->cnpj = "cnpj";
-        $empresa->email = "email";
-        $empresa->rua = "rua";
-        $empresa->bairro = "bairro";
-        $empresa->complemento = "complemento";
-        $empresa->cidade = "cidade";
-        $empresa->estado = "estado";
-        $empresa->cep = "cep";
-        $empresa->telefone = "telefone";
-        $empresa->numero = 2;
-        $empresa->ativo = 1;
-
-        $empresa->save();
+        $produto->id_empresa = 1;
+        $produto->descricao = "descricao";
+        $produto->foto = "foto";
+        $produto->nome = "nome";
+        $produto->quantidade = 1;
+        $produto->save();
     }
 
     /**
@@ -62,10 +53,10 @@ class EmpresaController extends Controller
      */
     public function show()
     {
-        $empresa = Empresa::where('nome', "nome")
+        $produto = Produto::where('nome', "nome")
         ->first();
 
-        return $empresa;
+        return $produto;
     }
 
     /**

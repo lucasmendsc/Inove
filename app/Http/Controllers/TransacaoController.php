@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Empresa;
+use App\Models\Transacao;
 
-class EmpresaController extends Controller
+class TransacaoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,23 +24,12 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        $empresa = new Empresa();
+        $transacao = new Transacao();
 
-        $empresa->nome = "nome";
-        $empresa->razao = "razao";
-        $empresa->cnpj = "cnpj";
-        $empresa->email = "email";
-        $empresa->rua = "rua";
-        $empresa->bairro = "bairro";
-        $empresa->complemento = "complemento";
-        $empresa->cidade = "cidade";
-        $empresa->estado = "estado";
-        $empresa->cep = "cep";
-        $empresa->telefone = "telefone";
-        $empresa->numero = 2;
-        $empresa->ativo = 1;
-
-        $empresa->save();
+        $transacao->id_cliente = 1;
+        $transacao->id_produto = 1;
+        $transacao->valor = 1.23;
+        $transacao->save();
     }
 
     /**
@@ -62,10 +51,10 @@ class EmpresaController extends Controller
      */
     public function show()
     {
-        $empresa = Empresa::where('nome', "nome")
+        $transacao = Transacao::where('id', 2)
         ->first();
 
-        return $empresa;
+        return $transacao;
     }
 
     /**

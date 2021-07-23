@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Empresa;
+use App\Models\Cliente;
 
-class EmpresaController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,23 +24,14 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        $empresa = new Empresa();
+        $cliente = new cliente();
 
-        $empresa->nome = "nome";
-        $empresa->razao = "razao";
-        $empresa->cnpj = "cnpj";
-        $empresa->email = "email";
-        $empresa->rua = "rua";
-        $empresa->bairro = "bairro";
-        $empresa->complemento = "complemento";
-        $empresa->cidade = "cidade";
-        $empresa->estado = "estado";
-        $empresa->cep = "cep";
-        $empresa->telefone = "telefone";
-        $empresa->numero = 2;
-        $empresa->ativo = 1;
-
-        $empresa->save();
+        $cliente->nome = "nome";
+        $cliente->cpf = "cpf";
+        $cliente->senha = "senha";
+        $cliente->email = "email";
+        $cliente->saldo = 6.32;
+        $cliente->save();
     }
 
     /**
@@ -49,7 +40,7 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function showAll()
+    public function store(Request $request)
     {
         //
     }
@@ -62,10 +53,10 @@ class EmpresaController extends Controller
      */
     public function show()
     {
-        $empresa = Empresa::where('nome', "nome")
+        $cliente = Cliente::where('nome', "nome")
         ->first();
 
-        return $empresa;
+        return $cliente;
     }
 
     /**
