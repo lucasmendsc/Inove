@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\ViewModels\ClienteViewModel;
+use Illuminate\Foundation\Auth\User;
 
 class ClienteController extends Controller
 {
@@ -30,7 +32,12 @@ class ClienteController extends Controller
         $cliente->senha = "senha";
         $cliente->email = "email";
         $cliente->saldo = 6.32;
-        $cliente->save();
+
+        $viewModel = new ClienteViewModel(
+            $cliente
+        );
+
+        return view('index', $viewModel);
     }
 
     /**
