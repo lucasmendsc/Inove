@@ -5,7 +5,7 @@
             <div class="card-wrapper">
                 <div class="brand">
                     <img src="../img/logo.jpg">
-                    <script type="text/javascript" src="../js/cliente.js"></script>
+                    <script type="text/javascript" src="js/cliente.js"></script>
                 </div>
                 <div class="card fat">
                     <div class="card-body">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="footer">
-                    Copyright &copy; 2021 &mdash; <a href="https://inovedados.com.br/" target="_blank">Inove</a>
+                    Copyright &copy; 2021 &mdash; <a href="https://inovedados.com.br/" target="_blank">Inove Dados</a>
                 </div>
             </div>
         </div>

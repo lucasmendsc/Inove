@@ -31,13 +31,17 @@ Route::group(['prefix' => '/cliente'], function () {
     Route::get('/mostrar', [ClienteController::class, 'show']);
     Route::get('/editar', [ClienteController::class, 'edit']);
     Route::get('/deletar', [ClienteController::class, 'destroy']);
+    Route::post('/logar', [ClienteController::class, 'logar']);
 });
 
 Route::group(['prefix' => '/empresa'], function () {
-    Route::get('/adicionar', [EmpresaController::class, 'create']);
+    Route::get('/', [EmpresaController::class, 'index']);
+    Route::post('/adicionar', [EmpresaController::class, 'create']);
     Route::get('/mostrar', [EmpresaController::class, 'show']);
     Route::get('/editar', [EmpresaController::class, 'edit']);
     Route::get('/deletar', [EmpresaController::class, 'destroy']);
+    Route::post('/verificarCnpj', [EmpresaController::class, 'verificarCnpj']);
+    Route::get('/verificarEmail', [EmpresaController::class, 'verificarEmail']);
 });
 
 Route::group(['prefix' => '/produto'], function () {

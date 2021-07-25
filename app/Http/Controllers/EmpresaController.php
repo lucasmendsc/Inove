@@ -14,6 +14,7 @@ class EmpresaController extends Controller
      */
     public function index()
     {
+        return view('empresa/cadastro');
     }
 
     /**
@@ -21,22 +22,23 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+
         $empresa = new Empresa();
 
-        $empresa->nome = "nome";
-        $empresa->razao = "razao";
-        $empresa->cnpj = "cnpj";
-        $empresa->email = "email";
-        $empresa->rua = "rua";
-        $empresa->bairro = "bairro";
-        $empresa->complemento = "complemento";
-        $empresa->cidade = "cidade";
-        $empresa->estado = "estado";
-        $empresa->cep = "cep";
-        $empresa->telefone = "telefone";
-        $empresa->numero = 2;
+        $empresa->nome = $request->nome;
+        $empresa->razao = $request->razao;
+        $empresa->cnpj = $request->cnpj;
+        $empresa->email = $request->email;
+        $empresa->rua = $request->rua;
+        $empresa->bairro = $request->bairro;
+        $empresa->complemento = $request->complemento;
+        $empresa->cidade = $request->cidade;
+        $empresa->estado = $request->estado;
+        $empresa->cep = $request->cep;
+        $empresa->telefone = $request->telefone;
+        $empresa->numero = $request->numero;
         $empresa->ativo = 1;
 
         $empresa->save();
@@ -116,8 +118,31 @@ class EmpresaController extends Controller
     public function destroy(request $request)
     {
         $empresa = empresa::where('id', $request->id)
-        ->first();
+            ->first();
 
         $empresa->delete();
+    }
+
+    public function verificarCnpj(Request $request)
+    {
+        $empresa = empresa::where('cnpj', $request->cnpj)
+            ->first();
+
+        if ($empresa) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+    public function verificarEmail(Request $request)
+    {
+        $empresa = empresa::where('email', $request->email)
+            ->first();
+
+        if ($empresa) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }

@@ -5,6 +5,7 @@
             <div class="card-wrapper">
                 <div class="brand">
                     <img src="img/logo.jpg" alt="bootstrap 4 login page">
+                    <script type="text/javascript" src="../js/cliente.js"></script>
                 </div>
                 <div class="card fat">
                     <div class="card-body">
@@ -37,7 +38,7 @@
                     </div>
                 </div>
                 <div class="footer">
-                    Copyright &copy; 2021 &mdash; <a href="https://after.sale/">After Sale</a>
+                    Copyright &copy; 2021 &mdash; <a href="https://inovedados.com.br/">Inove dados</a>
                 </div>
             </div>
         </div>

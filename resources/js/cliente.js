@@ -23,7 +23,6 @@ window.onload = function() {
     });
 
     $("#logar").click(function() {
-
         let email = $('#email').val();
         let senha = $('#senha').val();
         let tk = $('#token').val();
@@ -37,7 +36,6 @@ window.onload = function() {
                 senha: senha,
             },
             success: function(data) {
-
                 if (data) {
                     sessionStorage.setItem("id_cliente", data);
                 }

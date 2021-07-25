@@ -94,6 +94,20 @@ class ClienteController extends Controller
         $cliente->update();
     }
 
+    public function logar(Request $request)
+    {
+        $email = $request->email;
+        $senha = $request->senha;
+
+        $cliente = Cliente::where('email', $email)
+            ->where('senha', $senha)
+            ->first();
+
+        if (isset($cliente)) {
+            return $cliente->id;
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -103,7 +117,7 @@ class ClienteController extends Controller
     public function destroy(request $request)
     {
         $cliente = Cliente::where('id', $request->id)
-        ->first();
+            ->first();
 
         $cliente->delete();
     }
