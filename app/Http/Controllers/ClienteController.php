@@ -16,6 +16,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
+        return view('cadastro');
     }
 
     /**
@@ -23,21 +24,17 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $cliente = new cliente();
 
-        $cliente->nome = "nome";
-        $cliente->cpf = "cpf";
-        $cliente->senha = "senha";
-        $cliente->email = "email";
-        $cliente->saldo = 6.32;
+        $cliente->nome = $request->nome;
+        $cliente->cpf = $request->cpf;
+        $cliente->senha = $request->senha;
+        $cliente->email = $request->email;
+        $cliente->saldo = 100;
 
-        $viewModel = new ClienteViewModel(
-            $cliente
-        );
-
-        return view('index', $viewModel);
+        $cliente->save();
     }
 
     /**

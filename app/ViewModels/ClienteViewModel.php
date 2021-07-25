@@ -17,7 +17,7 @@ class ClienteViewModel extends ViewModel
     {
         $this->cliente = $cliente;
 
-        $this->indexUrl = action([ClienteController::class, 'index']);
+        $this->indexUrl = action([ClienteController::class, 'create']);
     }
 
     public function cliente(): Cliente

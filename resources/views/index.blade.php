@@ -3,7 +3,6 @@
     <input type="text" value="{{ $cliente->cpf }}" />
 </form>
 
-
 <a href="{{ $indexUrl }}">Back</a>
 <table class="table">
     <thead>
