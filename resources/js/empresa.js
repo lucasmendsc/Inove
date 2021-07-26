@@ -4,26 +4,48 @@ window.onload = function() {
     const email = document.querySelector('#email');
 
     cpnj.addEventListener('change', (event) => {
-        let cnpjj = cpnj.value;
+        let cnpjValue = cpnj.value;
         let tk = $('#token').val();
         $.ajax({
             type: "POST",
             url: "/empresa/verificarCnpj",
             data: {
-                cnpj: cnpjj,
+                cnpj: cnpjValue,
                 _token: tk,
             },
             success: function(data) {
-                console.log(data);
-            },
-
-            error: function(dataa) {
-
-                console.log(dataa);
-
+                let resposta = data;
+                if (resposta != 1) {
+                    document.getElementById("cadastrar").style.display = "none";
+                    alert("CPNJ já cadastrado,informe um CPNJ novo!")
+                } else {
+                    document.getElementById("cadastrar").style.display = "block";
+                }
             }
         });
 
+    });
+
+    email.addEventListener('change', (event) => {
+        let emailValue = email.value;
+        let tk = $('#token').val();
+        $.ajax({
+            type: "POST",
+            url: "/empresa/verificarEmail",
+            data: {
+                email: emailValue,
+                _token: tk,
+            },
+            success: function(data) {
+                let resposta = data;
+                if (resposta != 1) {
+                    document.getElementById("cadastrar").style.display = "none";
+                    alert("E-mail já cadastrado,informe um e-mail novo!")
+                } else {
+                    document.getElementById("cadastrar").style.display = "block";
+                }
+            }
+        });
     });
 
     email.addEventListener('change', (event) => {

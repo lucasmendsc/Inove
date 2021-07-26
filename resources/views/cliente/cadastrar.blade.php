@@ -5,7 +5,7 @@
             <div class="card-wrapper">
                 <div class="brand">
                     <img src="../img/logo.jpg">
-                    <script type="text/javascript" src="js/cliente.js"></script>
+                    <script type="text/javascript" src="../js/cliente.js"></script>
                 </div>
                 <div class="card fat">
                     <div class="card-body">

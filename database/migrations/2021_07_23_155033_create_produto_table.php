@@ -19,7 +19,7 @@ class CreateProdutoTable extends Migration
             $table->integer('id_empresa')->unsigned();
             $table->foreign('id_empresa')->references('id')->on('empresas')->onDelete('cascade')->onUpdate('cascade');
             $table->string('descricao');
-            $table->string('foto');
+            $table->string('foto')->default('0');
             $table->integer('quantidade');
             $table->timestamps();
         });

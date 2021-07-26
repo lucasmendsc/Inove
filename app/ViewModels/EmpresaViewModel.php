@@ -8,19 +8,13 @@ use App\Http\Controllers\EmpresaController;
 
 class EmpresaViewModel extends ViewModel
 {
-    public $empresa;
+    public $empresas;
+    public $indexUrl;
 
-    public $indexUrl = null;
-
-    public function __construct(Empresa $empresa)
+    public function __construct($arr)
     {
-        $this->empresa = $empresa;
+        $this->empresas = $arr;
 
         $this->indexUrl = action([EmpresaController::class, 'index']);
-    }
-
-    public function empresa(): empresa
-    {
-        return $this->empresa ?? new empresa();
     }
 }

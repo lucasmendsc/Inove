@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Empresa;
+use App\ViewModels\EmpresaViewModel;
 
 class EmpresaController extends Controller
 {
@@ -14,7 +15,14 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        return view('empresa/cadastro');
+        $empresas =  Empresa::all();
+
+        return view('empresa/index', new EmpresaViewModel($empresas));
+    }
+
+    public function cadastrar()
+    {
+        return view('empresa/cadastrar');
     }
 
     /**

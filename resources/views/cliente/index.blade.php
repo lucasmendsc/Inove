@@ -1,8 +1,6 @@
 @extends('default.layout')
 
-
-
-<a href="{{ $indexUrl }}">Back</a>
+<a href="../index">Back</a>
 <table class="table">
     <thead>
         <tr>
@@ -14,11 +12,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($arr as $a)
+        @foreach ($clientes as $c)
             <th scope="row">1</th>
-            <td><?php echo $a['nome']; ?></td>
-            <td><?php echo $a['cpf']; ?></td>
-            <td><?php echo $a['email']; ?></td>
+            <td><?php echo $c['nome']; ?></td>
+            <td><?php echo $c['cpf']; ?></td>
+            <td><?php echo $c['email']; ?></td>
             </tr>
         @endforeach
 

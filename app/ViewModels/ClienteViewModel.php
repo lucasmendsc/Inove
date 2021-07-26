@@ -9,20 +9,12 @@ use App\Http\Controllers\ClienteController;
 class ClienteViewModel extends ViewModel
 {
 
-    public $cliente;
+    public $clientes;
 
-    public $indexUrl = null;
-
-    public function __construct(Cliente $cliente)
+    public function __construct($arr)
     {
-        $this->cliente = $cliente;
+        $this->clientes = $arr;
 
-        $this->indexUrl = action([ClienteController::class, 'create']);
+        $this->indexUrl = action([ClienteController::class, 'index']);
     }
-
-    public function cliente(): Cliente
-    {
-        return $this->cliente ?? new Cliente();
-    }
-
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\ViewModels\ProdutoViewModel;
 
 class ProdutoController extends Controller
 {
@@ -14,6 +15,14 @@ class ProdutoController extends Controller
      */
     public function index()
     {
+        $produtos =  Produto::all();
+
+        return view('produto/index', new ProdutoViewModel($produtos));
+    }
+
+    public function cadastrar()
+    {
+        return view('produto/cadastrar');
     }
 
     /**
@@ -21,15 +30,15 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $produto = new Produto();
 
-        $produto->id_empresa = 1;
-        $produto->descricao = "descricao";
-        $produto->foto = "foto";
-        $produto->nome = "nome";
-        $produto->quantidade = 1;
+        $produto->id_empresa = $request->empresa;
+        $produto->descricao = $request->descricao;
+        //$produto->foto = $request->foto;
+        $produto->nome = $request->nome;
+        $produto->quantidade = $request->quantidade;
         $produto->save();
     }
 
@@ -99,7 +108,7 @@ class ProdutoController extends Controller
     public function destroy(request $request)
     {
         $produto = Produto::where('id', $request->id)
-        ->first();
+            ->first();
 
         $produto->delete();
     }

@@ -27,6 +27,7 @@ Route::get('/login', function () {
 
 Route::group(['prefix' => '/cliente'], function () {
     Route::get('/', [ClienteController::class, 'index']);
+    Route::get('/cadastrar', [ClienteController::class, 'cadastrar']);
     Route::post('/adicionar', [ClienteController::class, 'create']);
     Route::get('/mostrar', [ClienteController::class, 'show']);
     Route::get('/editar', [ClienteController::class, 'edit']);
@@ -36,16 +37,19 @@ Route::group(['prefix' => '/cliente'], function () {
 
 Route::group(['prefix' => '/empresa'], function () {
     Route::get('/', [EmpresaController::class, 'index']);
+    Route::get('/cadastrar', [EmpresaController::class, 'cadastrar']);
     Route::post('/adicionar', [EmpresaController::class, 'create']);
     Route::get('/mostrar', [EmpresaController::class, 'show']);
     Route::get('/editar', [EmpresaController::class, 'edit']);
     Route::get('/deletar', [EmpresaController::class, 'destroy']);
     Route::post('/verificarCnpj', [EmpresaController::class, 'verificarCnpj']);
-    Route::get('/verificarEmail', [EmpresaController::class, 'verificarEmail']);
+    Route::post('/verificarEmail', [EmpresaController::class, 'verificarEmail']);
 });
 
 Route::group(['prefix' => '/produto'], function () {
-    Route::get('/adicionar', [ProdutoController::class, 'create']);
+    Route::get('/', [ProdutoController::class, 'index']);
+    Route::get('/cadastrar', [ProdutoController::class, 'cadastrar']);
+    Route::post('/adicionar', [ProdutoController::class, 'create']);
     Route::get('/mostrar', [ProdutoController::class, 'show']);
     Route::get('/editar', [ProdutoController::class, 'edit']);
     Route::get('/deletar', [ProdutoController::class, 'destroy']);
