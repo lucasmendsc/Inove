@@ -22,12 +22,12 @@ class CreateEmpresaTable extends Migration
             $table->string('rua');
             $table->string('bairro');
             $table->integer('numero');
-            $table->string('complemento');
+            $table->string('complemento')->default('');;
             $table->string('cidade');
             $table->string('estado');
             $table->string('cep');
-            $table->string('telefone');
-            $table->integer('ativo');
+            $table->string('telefone')->default('');;
+            $table->integer('ativo')->default('1');;
             $table->timestamps();
         });
     }

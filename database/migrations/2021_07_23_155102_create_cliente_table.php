@@ -19,7 +19,7 @@ class CreateClienteTable extends Migration
             $table->string('cpf')->unique();
             $table->string('email')->unique();
             $table->string('senha');
-            $table->double('saldo');
+            $table->double('saldo')->default('0');;
             $table->timestamps();
         });
     }

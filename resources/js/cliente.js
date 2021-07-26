@@ -22,6 +22,39 @@ window.onload = function() {
         });
     });
 
+    $("#editar").click(function() {
+        let nome = $('#nome').val();
+        let email = $('#email').val();
+        let cpf = $('#cpf').val();
+        let senha = $('#senha').val();
+        let saldo = $('#saldo').val();
+        let id = $('#id').val();
+        let tk = $('#token').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/cliente/edit",
+            data: {
+                _token: tk,
+                id: id,
+                nome: nome,
+                email: email,
+                cpf: cpf,
+                senha: senha,
+                saldo: saldo,
+            },
+            success: function(data) {
+                console.log(data);
+            },
+
+            error: function(dataa) {
+
+                console.log(dataa);
+
+            }
+        });
+    });
+
     $("#logar").click(function() {
         let email = $('#email').val();
         let senha = $('#senha').val();

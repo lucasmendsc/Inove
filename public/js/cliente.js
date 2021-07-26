@@ -25,6 +25,34 @@ window.onload = function () {
       }
     });
   });
+  $("#editar").click(function () {
+    var nome = $('#nome').val();
+    var email = $('#email').val();
+    var cpf = $('#cpf').val();
+    var senha = $('#senha').val();
+    var saldo = $('#saldo').val();
+    var id = $('#id').val();
+    var tk = $('#token').val();
+    $.ajax({
+      type: "POST",
+      url: "/cliente/edit",
+      data: {
+        _token: tk,
+        id: id,
+        nome: nome,
+        email: email,
+        cpf: cpf,
+        senha: senha,
+        saldo: saldo
+      },
+      success: function success(data) {
+        console.log(data);
+      },
+      error: function error(dataa) {
+        console.log(dataa);
+      }
+    });
+  });
   $("#logar").click(function () {
     var email = $('#email').val();
     var senha = $('#senha').val();

@@ -21,6 +21,16 @@ class ClienteController extends Controller
         return view('cliente/index', new ClienteViewModel($clientes));
     }
 
+    public function editar(Request $request)
+    {
+        $cliente = Cliente::where('id', $request->id)
+            ->first();
+
+        $clientes[0] =  $cliente;
+
+        return view('cliente/editar', new ClienteViewModel($clientes));
+    }
+
     public function cadastrar()
     {
         return view('cliente/cadastro');
@@ -75,19 +85,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
+    public function edit(Request $request)
     {
         $cliente = Cliente::where('id', $request->id)
             ->first();
@@ -99,6 +97,17 @@ class ClienteController extends Controller
         $cliente->saldo = $request->saldo;
 
         $cliente->update();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update()
+    {
     }
 
     public function logar(Request $request)

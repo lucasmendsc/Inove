@@ -30,9 +30,11 @@ Route::group(['prefix' => '/cliente'], function () {
     Route::get('/cadastrar', [ClienteController::class, 'cadastrar']);
     Route::post('/adicionar', [ClienteController::class, 'create']);
     Route::get('/mostrar', [ClienteController::class, 'show']);
-    Route::get('/editar', [ClienteController::class, 'edit']);
-    Route::get('/deletar', [ClienteController::class, 'destroy']);
+    Route::get('/editar{id}', [ClienteController::class, 'editar']);
+    Route::post('/edit', [ClienteController::class, 'edit']);
+    Route::get('/deletar{id}', [ClienteController::class, 'destroy']);
     Route::post('/logar', [ClienteController::class, 'logar']);
+    Route::post('/deslogar', [ClienteController::class, 'deslogar']);
 });
 
 Route::group(['prefix' => '/empresa'], function () {
