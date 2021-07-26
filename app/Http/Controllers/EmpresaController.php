@@ -25,6 +25,15 @@ class EmpresaController extends Controller
         return view('empresa/cadastrar');
     }
 
+    public function editar(Request $request)
+    {
+        $empresa = Empresa::where('id', $request->id)
+            ->first();
+
+        $empresas[0] =  $empresa;
+
+        return view('empresa/editar', new EmpresaViewModel($empresas));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -83,21 +92,10 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $empresa = empresa::where('id', $request->id)
+        $empresa = Empresa::where('id', $request->id)
             ->first();
 
         $empresa->nome = $request->nome;
@@ -115,6 +113,17 @@ class EmpresaController extends Controller
         $empresa->ativo = $request->ativo;
 
         $empresa->update();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update()
+    {
     }
 
     /**

@@ -31,4 +31,37 @@ window.onload = function() {
         });
     });
 
+    $("#editar").click(function() {
+        let nome = $('#nome').val();
+        let empresa = $('#empresa').val();
+        let descricao = $('#descricao').val();
+        let foto = $('#foto').val();
+        let quantidade = $('#quantidade').val();
+        let id = $('#id').val();
+        let tk = $('#token').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/produto/edit",
+            data: {
+                nome: nome,
+                id_empresa: empresa,
+                descricao: descricao,
+                foto: foto,
+                quantidade: quantidade,
+                id: id,
+                _token: tk,
+            },
+            success: function(data) {
+                console.log(data);
+            },
+
+            error: function(dataa) {
+
+                console.log(dataa);
+
+            }
+        });
+    });
+
 }

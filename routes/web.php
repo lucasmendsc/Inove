@@ -42,8 +42,9 @@ Route::group(['prefix' => '/empresa'], function () {
     Route::get('/cadastrar', [EmpresaController::class, 'cadastrar']);
     Route::post('/adicionar', [EmpresaController::class, 'create']);
     Route::get('/mostrar', [EmpresaController::class, 'show']);
-    Route::get('/editar', [EmpresaController::class, 'edit']);
-    Route::get('/deletar', [EmpresaController::class, 'destroy']);
+    Route::get('/editar{id}', [EmpresaController::class, 'editar']);
+    Route::post('/edit', [EmpresaController::class, 'edit']);
+    Route::get('/deletar{id}', [EmpresaController::class, 'destroy']);
     Route::post('/verificarCnpj', [EmpresaController::class, 'verificarCnpj']);
     Route::post('/verificarEmail', [EmpresaController::class, 'verificarEmail']);
 });
@@ -53,8 +54,9 @@ Route::group(['prefix' => '/produto'], function () {
     Route::get('/cadastrar', [ProdutoController::class, 'cadastrar']);
     Route::post('/adicionar', [ProdutoController::class, 'create']);
     Route::get('/mostrar', [ProdutoController::class, 'show']);
-    Route::get('/editar', [ProdutoController::class, 'edit']);
-    Route::get('/deletar', [ProdutoController::class, 'destroy']);
+    Route::get('/editar{id}', [ProdutoController::class, 'editar']);
+    Route::post('/edit', [ProdutoController::class, 'edit']);
+    Route::get('/deletar{id}', [ProdutoController::class, 'destroy']);
 });
 
 Route::group(['prefix' => '/transacao'], function () {

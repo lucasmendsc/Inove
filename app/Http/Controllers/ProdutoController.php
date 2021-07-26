@@ -25,6 +25,16 @@ class ProdutoController extends Controller
         return view('produto/cadastrar');
     }
 
+    public function editar(Request $request)
+    {
+        $produto = Produto::where('id', $request->id)
+            ->first();
+
+        $produtos[0] =  $produto;
+
+        return view('produto/editar', new ProdutoViewModel($produtos));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

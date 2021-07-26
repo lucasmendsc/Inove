@@ -15,14 +15,15 @@ class CreateProdutoTable extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
+            $table->string('nome',25);
             $table->integer('id_empresa')->unsigned();
             $table->foreign('id_empresa')->references('id')->on('empresas')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('descricao')->default('');;
-            $table->string('foto')->default('0');
+            $table->string('descricao',100)->nullable();
+            $table->string('foto')->nullable();
             $table->integer('quantidade');
             $table->timestamps();
         });
+
     }
 
     /**

@@ -51,7 +51,6 @@ window.onload = function () {
       }
     });
   });
-  email.addEventListener('change', function (event) {});
   campoCep.addEventListener('change', function (event) {
     var cep = campoCep.value;
     var options = {
@@ -104,6 +103,50 @@ window.onload = function () {
         estado: estado,
         cep: cep,
         telefone: telefone,
+        _token: tk
+      },
+      success: function success(data) {
+        console.log(data);
+      },
+      error: function error(dataa) {
+        console.log(dataa);
+      }
+    });
+  });
+  $("#editar").click(function () {
+    var nome = $('#nome').val();
+    var razao = $('#razao').val();
+    var cnpj = $('#cnpj').val();
+    var email = $('#email').val();
+    var rua = $('#logradouro').val();
+    var bairro = $('#bairro').val();
+    var numero = $('#numero').val();
+    var complemento = $('#complemento').val();
+    var cidade = $('#localidade').val();
+    var estado = $('#uf').val();
+    var cep = $('#cep').val();
+    var telefone = $('#telefone').val();
+    var ativo = $('#ativo').val();
+    var id = $('#id').val();
+    var tk = $('#token').val();
+    $.ajax({
+      type: "POST",
+      url: "/empresa/edit",
+      data: {
+        nome: nome,
+        razao: razao,
+        cnpj: cnpj,
+        email: email,
+        rua: rua,
+        bairro: bairro,
+        numero: numero,
+        complemento: complemento,
+        cidade: cidade,
+        estado: estado,
+        cep: cep,
+        telefone: telefone,
+        ativo: ativo,
+        id: id,
         _token: tk
       },
       success: function success(data) {
