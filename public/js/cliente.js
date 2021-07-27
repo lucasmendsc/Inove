@@ -77,5 +77,24 @@ window.onload = function () {
     sessionStorage.setItem("id_cliente", "");
   }
 };
+
+window.deletarCliente = function (idCliente) {
+  var resultado = confirm("Deseja excluir esse cliente?");
+
+  if (resultado) {
+    $.ajax({
+      type: "GET",
+      url: "/cliente/deletar" + idCliente,
+      success: function success(data) {
+        alert("O cliente foi excluído!");
+        location.reload();
+        return false;
+      },
+      error: function error(dataa) {
+        console.log(dataa);
+      }
+    });
+  }
+};
 /******/ })()
 ;

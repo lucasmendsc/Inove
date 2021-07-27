@@ -65,3 +65,24 @@ window.onload = function() {
     });
 
 }
+
+window.deletarProduto = function(idProduto) {
+    var resultado = confirm("Deseja excluir esse Produto?");
+    if (resultado) {
+        $.ajax({
+            type: "GET",
+            url: "/produto/deletar" + idProduto,
+            success: function(data) {
+                alert("O produto foi excluído!");
+                location.reload();
+                return false;
+            },
+
+            error: function(dataa) {
+
+                console.log(dataa);
+
+            }
+        });
+    }
+}

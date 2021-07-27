@@ -33,7 +33,7 @@ class ClienteController extends Controller
 
     public function cadastrar()
     {
-        return view('cliente/cadastro');
+        return view('cliente/cadastrar');
     }
 
     /**

@@ -8,6 +8,12 @@ body.my-login-page {
     font-size: 14px;
 }
 
+.display-inblock {
+    display: inline-block;
+    width: 20%;
+    cursor: pointer;
+}
+
 .favorito-icon {
     cursor: pointer;
 }

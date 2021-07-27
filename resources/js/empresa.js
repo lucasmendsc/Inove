@@ -167,3 +167,23 @@ window.onload = function() {
     });
 
 }
+window.deletarEmpresa = function(idEmpresa) {
+    var resultado = confirm("Deseja excluir essa Empresa?");
+    if (resultado) {
+        $.ajax({
+            type: "GET",
+            url: "/empresa/deletar" + idEmpresa,
+            success: function(data) {
+                alert("A empresa foi excluída!");
+                location.reload();
+                return false;
+            },
+
+            error: function(dataa) {
+
+                console.log(dataa);
+
+            }
+        });
+    }
+}

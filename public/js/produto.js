@@ -59,5 +59,24 @@ window.onload = function () {
     });
   });
 };
+
+window.deletarProduto = function (idProduto) {
+  var resultado = confirm("Deseja excluir esse Produto?");
+
+  if (resultado) {
+    $.ajax({
+      type: "GET",
+      url: "/produto/deletar" + idProduto,
+      success: function success(data) {
+        alert("O produto foi excluída!");
+        location.reload();
+        return false;
+      },
+      error: function error(dataa) {
+        console.log(dataa);
+      }
+    });
+  }
+};
 /******/ })()
 ;
