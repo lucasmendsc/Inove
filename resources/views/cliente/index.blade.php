@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         @foreach ($clientes as $c)
-            <th scope="row">1</th>
+            <th scope="row">{{$c['id']}}</th>
             <td>{{ $c['nome'] }}</td>
             <td>{{ $c['cpf'] }}</td>
             <td>{{ $c['email'] }}</td>

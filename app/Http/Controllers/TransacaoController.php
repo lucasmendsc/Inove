@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ClienteEmail;
 use App\Models\Cliente;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Models\Transacao;
+use Illuminate\Support\Facades\Mail;
 
 class TransacaoController extends Controller
 {
@@ -51,7 +53,13 @@ class TransacaoController extends Controller
 
         $cliente->update();
         $produto->update();
+        $this->enviarEmail($cliente->email);
+    }
 
+    public function enviarEmail($email)
+    {
+
+        Mail::to($email)->send(new ClienteEmail());
     }
     /**
      * Store a newly created resource in storage.

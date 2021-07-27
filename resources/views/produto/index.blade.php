@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         @foreach ($produtos as $p)
-            <th scope="row">1</th>
+            <th scope="row">{{ $p['id'] }}</th>
             <td>{{ $p['nome'] }}</td>
             <td>{{ $p['quantidade'] }}</td>
             <td>{{ $p['descricao'] }}</td>
