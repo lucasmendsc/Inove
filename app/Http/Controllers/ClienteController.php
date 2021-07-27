@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Produto;
 use App\ViewModels\ClienteViewModel;
+use App\ViewModels\ProdutoViewModel;
 use Illuminate\Foundation\Auth\User;
 
 class ClienteController extends Controller
@@ -34,6 +36,13 @@ class ClienteController extends Controller
     public function cadastrar()
     {
         return view('cliente/cadastrar');
+    }
+
+    public function produtos()
+    {
+        $produtos =  Produto::all();
+
+        return view('cliente/produtos', new ProdutoViewModel($produtos));
     }
 
     /**
@@ -116,7 +125,6 @@ class ClienteController extends Controller
         $senha = $request->senha;
 
         $cliente = Cliente::where('email', $email)
-            ->where('senha', $senha)
             ->first();
 
         if (isset($cliente)) {

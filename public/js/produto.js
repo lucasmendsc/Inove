@@ -68,7 +68,7 @@ window.deletarProduto = function (idProduto) {
       type: "GET",
       url: "/produto/deletar" + idProduto,
       success: function success(data) {
-        alert("O produto foi excluída!");
+        alert("O produto foi excluído!");
         location.reload();
         return false;
       },

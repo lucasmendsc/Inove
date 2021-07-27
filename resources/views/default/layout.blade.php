@@ -13,7 +13,6 @@
 
 <body>
     @yield('content')
-    <script src="{{ secure_asset('js/app.js') }}" defer></script>
 </body>
 
 </html>

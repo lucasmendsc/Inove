@@ -29,10 +29,11 @@ Route::group(['prefix' => '/cliente'], function () {
     Route::get('/', [ClienteController::class, 'index']);
     Route::get('/cadastrar', [ClienteController::class, 'cadastrar']);
     Route::post('/adicionar', [ClienteController::class, 'create']);
-    Route::get('/mostrar', [ClienteController::class, 'show']);
+    Route::get('/produtos', [ClienteController::class, 'produtos']);
     Route::get('/editar{id}', [ClienteController::class, 'editar']);
     Route::post('/edit', [ClienteController::class, 'edit']);
     Route::get('/deletar{id}', [ClienteController::class, 'destroy']);
+    Route::get('/produtos', [ClienteController::class, 'produtos']);
     Route::post('/logar', [ClienteController::class, 'logar']);
     Route::post('/deslogar', [ClienteController::class, 'deslogar']);
 });

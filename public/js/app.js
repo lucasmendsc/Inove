@@ -1842,6 +1842,41 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+$("#logar").click(function () {
+  var email = $('#email').val();
+  var senha = $('#senha').val();
+  var tk = $('#token').val();
+
+  if (email == "adm" && senha == "adm") {
+    sessionStorage.setItem("id_logado", "adm");
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "/cliente/logar",
+      data: {
+        _token: tk,
+        email: email,
+        senha: senha
+      },
+      success: function success(data) {
+        if (data) {
+          sessionStorage.setItem("id_logado", data);
+          setTimeout(function () {
+            window.location.href = "cliente/produtos";
+          }, 500);
+        }
+      },
+      error: function error(dataa) {
+        console.log(dataa);
+      }
+    });
+  }
+});
+
+function deslogar() {
+  sessionStorage.setItem("id_logado", "");
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

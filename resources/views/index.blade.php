@@ -1,26 +1,46 @@
 @extends('default.layout')
+<section class="h-100">
+    <div class="container h-100">
+        <div class="row justify-content-md-center h-100">
+            <div class="card-wrapper">
+                <div class="brand">
+                    <img src="img/logo.jpg" alt="bootstrap 4 login page">
+                    <script src="{{ secure_asset('js/app.js') }}" defer></script>
+                </div>
+                <div class="card fat">
+                    <div class="card-body">
+                        <h4 class="card-title">Logar</h4>
+                        <form>
+                            <div class="form-group">
+                                <label for="email">E-Mail Address</label>
+                                <input id="email" type="email" class="form-control" name="email" required>
+                                <div class="invalid-feedback">
+                                    Your email is invalid
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label for="senha">Password</label>
+                                <input id="senha" type="password" class="form-control" name="password" required
+                                    data-eye>
+                                <div class="invalid-feedback">
+                                    Password is required
+                                </div>
+                            </div>
 
-
-<a href="{{ $indexUrl }}">Back</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">CPF</th>
-            <th scope="col">E-mail</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($arr as $a)
-            <th scope="row">1</th>
-            <td><?php echo $a['nome']; ?></td>
-            <td><?php echo $a['cpf']; ?></td>
-            <td><?php echo $a['email']; ?></td>
-            </tr>
-        @endforeach
-
-    </tbody>
-</table>
+                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                            <div class="form-group m-0">
+                                <div id="logar" class="btn btn-primary btn-block">
+                                    Login
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer">
+                    Copyright &copy; 2021 &mdash; <a href="https://inovedados.com.br/">Inove dados</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
