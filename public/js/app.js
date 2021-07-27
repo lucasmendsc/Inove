@@ -1860,7 +1860,8 @@ $("#logar").click(function () {
       },
       success: function success(data) {
         if (data) {
-          sessionStorage.setItem("id_logado", data);
+          sessionStorage.setItem("id_logado", data['id']);
+          sessionStorage.setItem("saldo_logado", parseInt(data['saldo']));
           setTimeout(function () {
             window.location.href = "cliente/produtos";
           }, 500);
@@ -1875,6 +1876,10 @@ $("#logar").click(function () {
 
 function deslogar() {
   sessionStorage.setItem("id_logado", "");
+  sessionStorage.setItem("saldo_logado", 0);
+  setTimeout(function () {
+    window.location.href = "/index";
+  }, 500);
 }
 
 /***/ }),

@@ -61,7 +61,7 @@ Route::group(['prefix' => '/produto'], function () {
 });
 
 Route::group(['prefix' => '/transacao'], function () {
-    Route::get('/adicionar', [TransacaoController::class, 'create']);
+    Route::post('/adicionar', [TransacaoController::class, 'create']);
     Route::get('/mostrar', [TransacaoController::class, 'show']);
     Route::get('/editar', [TransacaoController::class, 'edit']);
     Route::get('/deletar', [TransacaoController::class, 'destroy']);

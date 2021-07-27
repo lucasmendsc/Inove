@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Models\Transacao;
 
@@ -21,16 +23,36 @@ class TransacaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $transacao = new Transacao();
 
-        $transacao->id_cliente = 1;
-        $transacao->id_produto = 1;
-        $transacao->valor = 1.23;
+        $transacao->id_cliente = $request->id_cliente;
+        $transacao->id_produto =  $request->id_produto;
+        $transacao->valor =  $request->quantidade;
         $transacao->save();
+        $this->finalizarTransacao($transacao);
     }
 
+    private function finalizarTransacao(Transacao $transacao)
+    {
+        $id_cliente = $transacao->id_cliente;
+        $id_produto = $transacao->id_produto;
+
+        $cliente = Cliente::where('id', $id_cliente)
+            ->first();
+
+        $cliente->saldo -= $transacao->valor;
+
+        $produto = Produto::where('id', $id_produto)
+            ->first();
+
+        $produto->quantidade -= $transacao->valor;
+
+        $cliente->update();
+        $produto->update();
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -99,7 +121,7 @@ class TransacaoController extends Controller
     public function destroy(request $request)
     {
         $transacao = Transacao::where('id', $request->id)
-        ->first();
+            ->first();
 
         $transacao->delete();
     }

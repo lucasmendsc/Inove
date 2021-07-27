@@ -55,31 +55,6 @@ window.onload = function() {
         });
     });
 
-    $("#logar").click(function() {
-        let email = $('#email').val();
-        let senha = $('#senha').val();
-        let tk = $('#token').val();
-
-        $.ajax({
-            type: "POST",
-            url: "/cliente/logar",
-            data: {
-                _token: tk,
-                email: email,
-                senha: senha,
-            },
-            success: function(data) {
-                if (data) {
-                    sessionStorage.setItem("id_cliente", data);
-                }
-            }
-        });
-
-    });
-
-    function deslogar() {
-        sessionStorage.setItem("id_cliente", "");
-    }
 }
 
 window.deletarCliente = function(idCliente) {
@@ -101,4 +76,45 @@ window.deletarCliente = function(idCliente) {
             }
         });
     }
+}
+
+window.comprar = function(idProduto, quantidadeProduto) {
+
+    let quantidade = prompt("Digite a quantidade desejada:");
+
+    if (quantidade > quantidadeProduto) {
+        alert("Quantidade desejada maior que a disponível!");
+    } else {
+        let idCliente = sessionStorage.getItem("id_logado");
+        let saldoCliente = sessionStorage.getItem("saldo_logado");
+        let tk = $('#token').val();
+
+        if (quantidade > saldoCliente) {
+            alert("Quantidade maior que saldo! Revise seu pedido.");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/transacao/adicionar",
+                data: {
+                    _token: tk,
+                    id_produto: idProduto,
+                    id_cliente: idCliente,
+                    quantidade: quantidade,
+                },
+                success: function(data) {
+                    alert("Transaçao efetuada com sucesso!");
+                    sessionStorage.setItem("saldo_logado", parseInt(saldoCliente - quantidade));
+                    location.reload();
+                },
+
+                error: function(dataa) {
+
+                    console.log(dataa);
+
+                }
+            });
+        }
+
+    }
+
 }

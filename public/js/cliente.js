@@ -53,29 +53,6 @@ window.onload = function () {
       }
     });
   });
-  $("#logar").click(function () {
-    var email = $('#email').val();
-    var senha = $('#senha').val();
-    var tk = $('#token').val();
-    $.ajax({
-      type: "POST",
-      url: "/cliente/logar",
-      data: {
-        _token: tk,
-        email: email,
-        senha: senha
-      },
-      success: function success(data) {
-        if (data) {
-          sessionStorage.setItem("id_cliente", data);
-        }
-      }
-    });
-  });
-
-  function deslogar() {
-    sessionStorage.setItem("id_cliente", "");
-  }
 };
 
 window.deletarCliente = function (idCliente) {
@@ -94,6 +71,41 @@ window.deletarCliente = function (idCliente) {
         console.log(dataa);
       }
     });
+  }
+};
+
+window.comprar = function (idProduto, quantidadeProduto) {
+  var quantidade = prompt("Digite a quantidade desejada:");
+
+  if (quantidade > quantidadeProduto) {
+    alert("Quantidade desejada maior que a disponível!");
+  } else {
+    var idCliente = sessionStorage.getItem("id_logado");
+    var saldoCliente = sessionStorage.getItem("saldo_logado");
+    var tk = $('#token').val();
+
+    if (quantidade > saldoCliente) {
+      alert("Quantidade maior que saldo! Revise seu pedido.");
+    } else {
+      $.ajax({
+        type: "POST",
+        url: "/transacao/adicionar",
+        data: {
+          _token: tk,
+          id_produto: idProduto,
+          id_cliente: idCliente,
+          quantidade: quantidade
+        },
+        success: function success(data) {
+          alert("Transaçao efetuada com sucesso!");
+          sessionStorage.setItem("saldo_logado", parseInt(saldoCliente - quantidade));
+          location.reload();
+        },
+        error: function error(dataa) {
+          console.log(dataa);
+        }
+      });
+    }
   }
 };
 /******/ })()

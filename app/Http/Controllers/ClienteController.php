@@ -128,7 +128,7 @@ class ClienteController extends Controller
             ->first();
 
         if (isset($cliente)) {
-            return $cliente->id;
+            return $cliente;
         }
     }
 
