@@ -13,7 +13,7 @@ As ferramentas utilizadas no projeto foram as seguintes :
 - [jQuery](https://jquery.com/download/).
 - [MySQL](https://www.mysql.com/).
 - [Chocolatey](https://chocolatey.org/) utilizado para facilitar o download de algumas ferramentas. 
-- 
+
 ## Como foi executado o projeto
 
 O projeto foi executado através do [VSCode](https://code.visualstudio.com/). Bastando executar o comando ```php artisan serve``` no terminal e o projeto será executado em ```http://localhost:8000/```.
