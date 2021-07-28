@@ -56,7 +56,7 @@ class EmpresaController extends Controller
         $empresa->cep = $request->cep;
         $empresa->telefone = $request->telefone;
         $empresa->numero = $request->numero;
-        $empresa->ativo = 1;
+        $empresa->ativo = $request->ativo;
 
         $empresa->save();
     }

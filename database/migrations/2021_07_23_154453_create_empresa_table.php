@@ -27,7 +27,7 @@ class CreateEmpresaTable extends Migration
             $table->string('estado', 20);
             $table->string('cep', 9);
             $table->string('telefone', 12)->nullable();
-            $table->integer('ativo')->default('1');;
+            $table->boolean('ativo');
             $table->timestamps();
         });
     }

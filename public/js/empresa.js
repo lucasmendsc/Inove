@@ -87,6 +87,14 @@ window.onload = function () {
     var cep = $('#cep').val();
     var telefone = $('#telefone').val();
     var tk = $('#token').val();
+    var ativo = document.getElementById('ativo').checked;
+
+    if (ativo) {
+      ativo = 1;
+    } else {
+      ativo = 0;
+    }
+
     $.ajax({
       type: "POST",
       url: "/empresa/adicionar",
@@ -103,10 +111,12 @@ window.onload = function () {
         estado: estado,
         cep: cep,
         telefone: telefone,
+        ativo: ativo,
         _token: tk
       },
       success: function success(data) {
-        console.log(data);
+        alert("Empresa adicionada com sucesso!");
+        window.location.href = "/empresa";
       },
       error: function error(dataa) {
         console.log(dataa);
@@ -126,9 +136,16 @@ window.onload = function () {
     var estado = $('#uf').val();
     var cep = $('#cep').val();
     var telefone = $('#telefone').val();
-    var ativo = $('#ativo').val();
     var id = $('#id').val();
     var tk = $('#token').val();
+    var ativo = document.getElementById('ativo').checked;
+
+    if (ativo) {
+      ativo = 1;
+    } else {
+      ativo = 0;
+    }
+
     $.ajax({
       type: "POST",
       url: "/empresa/edit",
@@ -150,7 +167,8 @@ window.onload = function () {
         _token: tk
       },
       success: function success(data) {
-        console.log(data);
+        alert("Empresa alterada com sucesso!");
+        window.location.href = "/empresa";
       },
       error: function error(dataa) {
         console.log(dataa);
@@ -165,7 +183,7 @@ window.deletarEmpresa = function (idEmpresa) {
   if (resultado) {
     $.ajax({
       type: "GET",
-      url: "/empresa/deletar" + idEmpresa,
+      url: "../../empresa/deletar" + idEmpresa,
       success: function success(data) {
         alert("A empresa foi excluída!");
         location.reload();

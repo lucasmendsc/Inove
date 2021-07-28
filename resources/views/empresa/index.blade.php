@@ -1,5 +1,6 @@
 @extends('default.layout')
-<a href="../index">Back</a>
+<a href="../dashboard">Back</a>
+<a href="../../empresa/cadastrar">Cadastrar</a>
 <script type="text/javascript" src="../js/empresa.js"></script>
 <table class="table">
     <thead>
@@ -20,7 +21,7 @@
             <td>{{ $e['razao'] }}</td>
             <td>
                 <div class="display-inblock">
-                    <a href="empresa/editar{{ $e['id'] }}">
+                    <a href="../../empresa/editar{{ $e['id'] }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path

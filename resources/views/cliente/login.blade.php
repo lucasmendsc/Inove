@@ -4,7 +4,7 @@
         <div class="row justify-content-md-center h-100">
             <div class="card-wrapper">
                 <div class="brand">
-                    <img src="img/logo.jpg" alt="bootstrap 4 login page">
+                    <img src="../img/logo.jpg" alt="bootstrap 4 login page">
                     <script type="text/javascript" src="../js/cliente.js"></script>
                 </div>
                 <div class="card fat">

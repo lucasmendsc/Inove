@@ -1,5 +1,6 @@
 @extends('default.layout')
 <section class="h-100">
+    <a href="../empresa">Back</a>
     <div class="container h-100">
         <div class="row justify-content-md-center h-100">
             <div class="card-wrapper">
@@ -95,11 +96,13 @@
                                     value="{{ $empresas[0]->estado }}" required data-eye>
                             </div>
 
-                            <div class="form-group">
-                                <label for="ativo">Ativo</label>
-                                <input id="ativo" type="text" class="form-control" name="ativo"
-                                    value="{{ $empresas[0]->ativo }}" required data-eye>
-                            </div>
+                            @if ($empresas[0]->ativo)
+                                <input id="ativo" type="checkbox" checked data-toggle="toggle" data-on="Ativa"
+                                    data-off="Inativa" data-onstyle="success" data-offstyle="danger">
+                            @else
+                                <input id="ativo" type="checkbox" data-toggle="toggle" data-on="Ativa"
+                                    data-off="Inativa" data-onstyle="success" data-offstyle="danger">
+                            @endif
 
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="id" id="id" value="{{ $empresas[0]->id }}">

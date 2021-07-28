@@ -20,7 +20,8 @@ window.onload = function() {
                 _token: tk,
             },
             success: function(data) {
-                console.log(data);
+                alert("Produto adicionado com sucesso!");
+                window.location.href = "/produto";
             },
 
             error: function(dataa) {
@@ -53,7 +54,8 @@ window.onload = function() {
                 _token: tk,
             },
             success: function(data) {
-                console.log(data);
+                alert("Produto alterado com sucesso!");
+                window.location.href = "/produto";
             },
 
             error: function(dataa) {
@@ -71,7 +73,7 @@ window.deletarProduto = function(idProduto) {
     if (resultado) {
         $.ajax({
             type: "GET",
-            url: "/produto/deletar" + idProduto,
+            url: "../../produto/deletar" + idProduto,
             success: function(data) {
                 alert("O produto foi excluído!");
                 location.reload();

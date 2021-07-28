@@ -1,5 +1,6 @@
 @extends('default.layout')
 <section class="h-100">
+    <a href="../produto">Back</a>
     <div class="container h-100">
         <div class="row justify-content-md-center h-100">
             <div class="card-wrapper">

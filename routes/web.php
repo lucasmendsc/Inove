@@ -18,11 +18,11 @@ use App\Http\Controllers\TransacaoController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
+Route::get('/cliente/login', function () {
+    return view('cliente/login');
 });
 
 Route::group(['prefix' => '/cliente'], function () {
@@ -35,7 +35,7 @@ Route::group(['prefix' => '/cliente'], function () {
     Route::get('/deletar{id}', [ClienteController::class, 'destroy']);
     Route::get('/produtos', [ClienteController::class, 'produtos']);
     Route::post('/logar', [ClienteController::class, 'logar']);
-    Route::post('/deslogar', [ClienteController::class, 'deslogar']);
+    Route::get('/deslogar', [ClienteController::class, 'deslogar']);
 });
 
 Route::group(['prefix' => '/empresa'], function () {
@@ -67,3 +67,7 @@ Route::group(['prefix' => '/transacao'], function () {
     Route::get('/editar', [TransacaoController::class, 'edit']);
     Route::get('/deletar', [TransacaoController::class, 'destroy']);
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

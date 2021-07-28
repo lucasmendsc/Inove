@@ -1,5 +1,6 @@
 @extends('default.layout')
 <section class="h-100">
+    <a href="../empresa">Back</a>
     <div class="container h-100">
         <div class="row justify-content-md-center h-100">
             <div class="card-wrapper">
@@ -29,7 +30,7 @@
 
                             <div class="form-group">
                                 <label for="cpnj">CNPJ</label>
-                                <input id="cnpj" type="text" class="form-control" name="cnpj" required autofocus>
+                                <input id="cnpj" type="number" class="form-control" name="cnpj" required autofocus>
                                 <div class="invalid-feedback">
                                     Qual é o CNPJ da sua empresa?
                                 </div>
@@ -45,7 +46,7 @@
 
                             <div class="form-group">
                                 <label for="telefone">Telefone</label>
-                                <input id="telefone" type="text" class="form-control" name="telefone" required data-eye>
+                                <input id="telefone" type="number" class="form-control" name="telefone" required data-eye>
                             </div>
 
                             <div class="form-group">
@@ -55,7 +56,8 @@
 
                             <div class="form-group">
                                 <label for="logradouro">Rua</label>
-                                <input id="logradouro" type="text" class="form-control" name="logradouro" required data-eye>
+                                <input id="logradouro" type="text" class="form-control" name="logradouro" required
+                                    data-eye>
                             </div>
 
                             <div class="form-group">
@@ -65,7 +67,7 @@
 
                             <div class="form-group">
                                 <label for="numero">Número</label>
-                                <input id="numero" type="text" class="form-control" name="numero" required data-eye>
+                                <input id="numero" type="number" class="form-control" name="numero" required data-eye>
                             </div>
 
                             <div class="form-group">
@@ -76,13 +78,17 @@
 
                             <div class="form-group">
                                 <label for="localidade">Cidade</label>
-                                <input id="localidade" type="text" class="form-control" name="localidade" required data-eye>
+                                <input id="localidade" type="text" class="form-control" name="localidade" required
+                                    data-eye>
                             </div>
 
                             <div class="form-group">
                                 <label for="uf">Estado</label>
                                 <input id="uf" type="text" class="form-control" name="uf" required data-eye>
                             </div>
+
+                            <input id="ativo" type="checkbox" checked data-toggle="toggle" data-on="Ativa" data-off="Inativa"
+                                data-onstyle="success" data-offstyle="danger">
 
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                             <div class="form-group m-0">

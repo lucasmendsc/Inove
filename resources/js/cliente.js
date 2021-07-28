@@ -1,4 +1,13 @@
 window.onload = function() {
+
+    let urlAtual = window.location.href;
+    if (urlAtual.includes("cliente/produto")) {
+        if (sessionStorage.getItem("id_logado") == "" || sessionStorage.getItem("id_logado") == null) {
+            alert("Voce precisa logar um cliente para estar aqui!");
+            window.location.href = "/cliente";
+        }
+    }
+
     $("#cadastrar").click(function() {
         let nome = $('#nome').val();
         let email = $('#email').val();
@@ -8,7 +17,7 @@ window.onload = function() {
 
         $.ajax({
             type: "POST",
-            url: "/cliente/adicionar",
+            url: "adicionar",
             data: {
                 _token: tk,
                 nome: nome,
@@ -17,7 +26,8 @@ window.onload = function() {
                 senha: senha,
             },
             success: function(data) {
-                console.log(data);
+                alert("Cliente cadastrado com sucesso!");
+                window.location.href = "/cliente";
             }
         });
     });
@@ -33,7 +43,7 @@ window.onload = function() {
 
         $.ajax({
             type: "POST",
-            url: "/cliente/edit",
+            url: "edit",
             data: {
                 _token: tk,
                 id: id,
@@ -44,7 +54,41 @@ window.onload = function() {
                 saldo: saldo,
             },
             success: function(data) {
-                console.log(data);
+                alert("Cliente alterado com sucesso!");
+                window.location.href = "/cliente";
+            },
+
+            error: function(dataa) {
+
+                console.log(dataa);
+
+            }
+        });
+    });
+
+    $("#logar").click(function() {
+        let email = $('#email').val();
+        let senha = $('#senha').val();
+        let tk = $('#token').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/cliente/logar",
+            data: {
+                _token: tk,
+                email: email,
+                senha: senha,
+            },
+            success: function(data) {
+                if (data) {
+                    sessionStorage.setItem("id_logado", data['id']);
+                    sessionStorage.setItem("saldo_logado", parseInt(data['saldo']));
+                    setTimeout(function() {
+                        window.location.href = "../../cliente/produtos";
+                    }, 500);
+                } else {
+                    alert("Cliente nao encontrado! Revise suas credenciais.");
+                }
             },
 
             error: function(dataa) {
@@ -56,13 +100,40 @@ window.onload = function() {
     });
 
 }
-
+window.deslogar = function() {
+    sessionStorage.setItem("id_logado", "");
+    sessionStorage.setItem("saldo_logado", 0);
+    setTimeout(function() {
+        window.location.href = "../dashboard";
+    }, 500);
+}
 window.deletarCliente = function(idCliente) {
     var resultado = confirm("Deseja excluir esse cliente?");
     if (resultado) {
         $.ajax({
             type: "GET",
-            url: "/cliente/deletar" + idCliente,
+            url: "../../cliente/deletar" + idCliente,
+            success: function(data) {
+                alert("O cliente foi excluído!");
+                location.reload();
+                return false;
+            },
+
+            error: function(dataa) {
+
+                console.log(dataa);
+
+            }
+        });
+    }
+}
+
+window.alterarCliente = function(idCliente) {
+
+    if (resultado) {
+        $.ajax({
+            type: "GET",
+            url: "../../cliente/deletar" + idCliente,
             success: function(data) {
                 alert("O cliente foi excluído!");
                 location.reload();
@@ -80,30 +151,32 @@ window.deletarCliente = function(idCliente) {
 
 window.comprar = function(idProduto, quantidadeProduto) {
 
-    let quantidade = prompt("Digite a quantidade desejada:");
+    let quantidadeDesejada = prompt("Digite a quantidade desejada:");
 
-    if (quantidade > quantidadeProduto) {
+    if (quantidadeDesejada > quantidadeProduto) {
         alert("Quantidade desejada maior que a disponível!");
     } else {
+
         let idCliente = sessionStorage.getItem("id_logado");
         let saldoCliente = sessionStorage.getItem("saldo_logado");
         let tk = $('#token').val();
 
-        if (quantidade > saldoCliente) {
+        if (quantidadeDesejada > parseInt(saldoCliente)) {
             alert("Quantidade maior que saldo! Revise seu pedido.");
+
         } else {
             $.ajax({
                 type: "POST",
-                url: "/transacao/adicionar",
+                url: "../../transacao/adicionar",
                 data: {
                     _token: tk,
                     id_produto: idProduto,
                     id_cliente: idCliente,
-                    quantidade: quantidade,
+                    quantidade: quantidadeDesejada,
                 },
                 success: function(data) {
-                    alert("Transaçao efetuada com sucesso!");
-                    sessionStorage.setItem("saldo_logado", parseInt(saldoCliente - quantidade));
+                    alert("Transaçao efetuada com sucesso! Email enviado!");
+                    sessionStorage.setItem("saldo_logado", parseInt(saldoCliente - quantidadeDesejada));
                     location.reload();
                 },
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\ViewModels\EmpresaViewModel;
 use App\ViewModels\ProdutoViewModel;
 
 class ProdutoController extends Controller
@@ -22,7 +24,10 @@ class ProdutoController extends Controller
 
     public function cadastrar()
     {
-        return view('produto/cadastrar');
+        $empresas =  Empresa::where('ativo', 1)
+            ->get();
+
+        return view('produto/cadastrar', new EmpresaViewModel($empresas));
     }
 
     public function editar(Request $request)

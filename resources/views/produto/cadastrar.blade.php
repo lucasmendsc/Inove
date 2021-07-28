@@ -1,5 +1,6 @@
 @extends('default.layout')
 <section class="h-100">
+    <a href="../produto">Back</a>
     <div class="container h-100">
         <div class="row justify-content-md-center h-100">
             <div class="card-wrapper">
@@ -22,9 +23,13 @@
                                     autofocus>
                             </div>
 
-                            <div class="form-group">
-                                <label for="empresa">Empresa</label>
-                                <input id="empresa" type="text" class="form-control" name="empresa" required>
+                            <div class="form-floating">
+                                <select class="form-control" id="empresa">
+                                    <option selected>Selecione a empresa</option>
+                                    @foreach ($empresas as $e)
+                                        <option value="{{ $e->id }}">{{ $e->nome }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="form-group">

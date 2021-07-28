@@ -1,5 +1,6 @@
 @extends('default.layout')
 <a href="../index">Back</a>
+<div onclick="deslogar()">Deslogar</div>
 <script type="text/javascript" src="../js/cliente.js"></script>
 <table class="table">
     <thead>
