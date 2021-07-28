@@ -1,6 +1,5 @@
 @extends('default.layout')
-<a href="../../dashboard">Back</a>
-<script type="text/javascript" src="../js/transacao.js"></script>
+<a href="../../transacao">Back</a>
 <table class="table">
     <thead>
         <tr>
@@ -8,12 +7,12 @@
             <th scope="col">Produto</th>
             <th scope="col">Cliente</th>
             <th scope="col">Valor</th>
-            <th scope="col">Açoes</th>
-
         </tr>
     </thead>
     <tbody>
+        <?php $valor = 0  ?>
         @foreach ($transacoes as $t)
+
             <th scope="row">{{ $t['id'] }}</th>
             <td>{{ $t->produto->nome }}</td>
             <td>{{ $t->cliente->nome }}</td>
@@ -32,14 +31,8 @@
                 </div>
             </td>
             </tr>
+            <?php $valor += $t->valor; ?>
         @endforeach
-
     </tbody>
-    <form>
-        <div style="padding-left: 30%;">
-            <input type="text" id="dataInicial" style="display: inline-block; widht:10%;"/>
-            <input type="text" id="dataFinal" style="display: inline-block; widht:10%;"/>
-            <div onclick="filtrarData()" class="btn btn-primary">Filtrar</div>
-        </div>
-    </form>
+    <h4>Total :  {{ $valor }} </h4>
 </table>

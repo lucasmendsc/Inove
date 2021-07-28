@@ -36,6 +36,7 @@ Route::group(['prefix' => '/cliente'], function () {
     Route::get('/produtos', [ClienteController::class, 'produtos']);
     Route::post('/logar', [ClienteController::class, 'logar']);
     Route::get('/deslogar', [ClienteController::class, 'deslogar']);
+    Route::get('/b', [ClienteController::class, 'store']);
 });
 
 Route::group(['prefix' => '/empresa'], function () {
@@ -66,6 +67,7 @@ Route::group(['prefix' => '/transacao'], function () {
     Route::get('/mostrar', [TransacaoController::class, 'show']);
     Route::get('/editar', [TransacaoController::class, 'edit']);
     Route::get('/deletar', [TransacaoController::class, 'destroy']);
+    Route::get('/filtrar{de}/{ate}', [TransacaoController::class, 'filtrar']);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

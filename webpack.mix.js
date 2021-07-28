@@ -23,3 +23,4 @@ if (mix.inProduction()) {
 mix.js('resources/js/cliente.js', 'js');
 mix.js('resources/js/empresa.js', 'js');
 mix.js('resources/js/produto.js', 'js');
+mix.js('resources/js/transacao.js', 'js');

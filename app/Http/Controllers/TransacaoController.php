@@ -7,6 +7,9 @@ use App\Models\Cliente;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Models\Transacao;
+use App\ViewModels\TransacaoViewModel;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 
 class TransacaoController extends Controller
@@ -18,6 +21,9 @@ class TransacaoController extends Controller
      */
     public function index()
     {
+        $transacoes =  Transacao::all();
+
+        return view('transacao/index', new TransacaoViewModel($transacoes));
     }
 
     /**
@@ -132,5 +138,24 @@ class TransacaoController extends Controller
             ->first();
 
         $transacao->delete();
+    }
+
+    public function relatorio()
+    {
+        $pdf = App::make('dompdf.wrapper');
+        $transacoes = Transacao::all();
+        $pdf = PDF::loadView('transacao/relatorioVenda', compact('transacoes'))->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->stream();
+    }
+
+    public function filtrar(Request $request)
+    {
+        $dataInicial = $request->de;
+        $dataFinal = $request->ate;
+
+        $transacoes =  Transacao::whereBetween('created_at', [$dataInicial,$dataFinal])
+            ->get();
+
+        return view('transacao/relatorioVenda', new TransacaoViewModel($transacoes));
     }
 }

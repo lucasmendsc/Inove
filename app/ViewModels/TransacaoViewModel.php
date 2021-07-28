@@ -8,19 +8,11 @@ use App\Http\Controllers\TransacaoController;
 
 class TransacaoViewModel extends ViewModel
 {
-    public $transacao;
+    public $transacoes;
 
-    public $indexUrl = null;
-
-    public function __construct(Transacao $transacao)
+    public function __construct($transacoes)
     {
-        $this->transacao = $transacao;
+        $this->transacoes = $transacoes;
 
-        $this->indexUrl = action([TransacaoController::class, 'index']);
-    }
-
-    public function transacao(): Transacao
-    {
-        return $this->transacao ?? new Transacao();
     }
 }

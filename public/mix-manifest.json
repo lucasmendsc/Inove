@@ -3,5 +3,6 @@
     "/js/cliente.js": "/js/cliente.js",
     "/js/empresa.js": "/js/empresa.js",
     "/js/produto.js": "/js/produto.js",
+    "/js/transacao.js": "/js/transacao.js",
     "/css/app.css": "/css/app.css"
 }
